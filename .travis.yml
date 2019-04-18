@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run wassily/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: ap-west-1
+  app: docker-react
+  bucket_name: some_bucket
+  bucket_path: docker-react
+  on:
+    branch: master
+  access_key_ID: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+
